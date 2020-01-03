@@ -1,4 +1,6 @@
 import _ from "lodash";
+import { DndProvider } from "react-dnd";
+import Backend from "react-dnd-html5-backend";
 import React from "react";
 import {
   Button,
@@ -58,7 +60,7 @@ class Event extends React.Component {
 
   addOne = item => async () => {
     try {
-      const eventDate = this.state.eventData.data;
+      const eventDate = this.state.eventData.time;
       const eventName = this.state.eventData.eventKey;
       const res = await Axios.get("/api/event/item/add-one", {
         params: {
@@ -78,7 +80,7 @@ class Event extends React.Component {
 
   subOne = item => async () => {
     try {
-      const eventDate = this.state.eventData.data;
+      const eventDate = this.state.eventData.time;
       const eventName = this.state.eventData.eventKey;
       const res = await Axios.get("/api/event/item/sub-one", {
         params: {
@@ -151,6 +153,7 @@ class Event extends React.Component {
                 <h5 className="title">רכבים</h5>
               </CardHeader>
               <CardBody>
+                <DndProvider backend={Backend}>{/* <Example /> */}</DndProvider>
                 <Table className="tablesorter" responsive>
                   <thead className="text-primary">
                     <tr>
